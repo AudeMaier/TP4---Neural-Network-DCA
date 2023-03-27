@@ -1,0 +1,18 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+import argparse
+import plotting
+
+if __name__=="__main__":
+
+    parser=argparse.ArgumentParser()
+    parser.add_argument("pdbMap",help="Structural contact map extracted from PDB.")
+    parser.add_argument("dcaFiles",help="List of DCA predictions file.",nargs="+")
+    parser.add_argument("Nmax",help="The maximal number of top ranked predictions to computed the precision."
+                        ,type=int)
+    parser.add_argument("contactThreshold",help="The threshold in Angstroms defining a structural contact."
+                        ,type=float)
+    args=parser.parse_args()
+
+    plotting.plotTPrates(args.pdbMap,args.dcaFiles,args.Nmax,args.contactThreshold)

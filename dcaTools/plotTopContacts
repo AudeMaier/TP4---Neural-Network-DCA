@@ -1,0 +1,18 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+import argparse
+import plotting
+
+if __name__=="__main__":
+
+    parser=argparse.ArgumentParser()
+    parser.add_argument("pdbMap",help="Structural contact map extracted from PDB.")
+    parser.add_argument("dcaFile",help="DCA predictions file.")
+    parser.add_argument("Ntop",help="The number of top ranked DCA contacts to plot.",type=int)
+    parser.add_argument("contactThreshold",help="The threshold in Angstroms defining a structural contact."
+                        ,type=float)
+    parser.add_argument("-ik",help="Minimal sequence separation in the alignment to extract contacts (default 4).",default=4,type=int)
+    args=parser.parse_args()
+
+    plotting.plotTopContacts(args.pdbMap,args.dcaFile,args.Ntop,args.contactThreshold,args.ik)

@@ -1,0 +1,19 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+import argparse
+import sequenceHandler
+
+if __name__=="__main__":
+
+    parser=argparse.ArgumentParser()
+    parser.add_argument("pdbFile",help="The PDB file to be mapped.")
+    parser.add_argument("chainIds",help="Single string containing the chain Ids in the PDB to be mapped (e.g. AB).")
+    parser.add_argument("mapFile",help="Output name for the mapped distance map.")
+    parser.add_argument("-hmm1",help="Optional first hmm file onto which the pdb map is aligned.",type=str,default='None')
+    parser.add_argument("-hmm2",help="Optional second hmm file for mapping dimers.",type=str,default='None')
+    parser.add_argument("-dist",help="Distance type: all,alpha or beta. Default:all",type=str,default='all')
+
+    args=parser.parse_args()
+
+    sequenceHandler.mapPDBToHMM(args.pdbFile,args.chainIds,args.hmm1,args.hmm2,args.mapFile,args.dist)
